@@ -1,6 +1,9 @@
 
-part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 8192 --size 32
 
-part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 8192
+# part 1bootloader --source rawcopy --sourceparams="file=bootloader.bin" --ondisk mmcblk --no-table --offset "1"
+
+part u-boot     --source rawcopy --sourceparams="file=u-boot-dtb.img"   --ondisk mmcblk0 --no-table                 --offset 33
+part /boot      --source bootimg-partition                              --ondisk mmcblk0 --fstype=vfat --label boot --align 8192 --size 32
+part /          --source rootfs                                         --ondisk mmcblk0 --fstype=ext4 --label root --align 8192
 
 bootloader --ptable msdos

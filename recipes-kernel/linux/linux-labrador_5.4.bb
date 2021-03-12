@@ -61,3 +61,9 @@ KBRANCH = "master"
 KBUILD_DEFCONFIG ?= "caninos_k5_defconfig"
 # KMACHINE = "caninos"
 # KBUILD_DEFCONFIG_apalis-tk1 ?= "tegra_defconfig"
+
+
+
+do_deploy_append() {
+    ln -sf ${KERNEL_DEVICETREE} $deployDir/kernel.dtb
+}
